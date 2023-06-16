@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Sofia+Sans&display=swap');
+@import url("https://use.typekit.net/cac8rhz.css");
+
+
+.pageContainer{
+    height:100vh;
+    width:100vw;
+    background-color: #FAF8F5; 
+}
+
+.container{
+    position: fixed;
+    height:80vh;
+    width:100vw;
+    display:grid;
+    place-items: center;
+}
+
+
+
+
+.wrap-content{
+    align-items: center;
+    text-align: center; 
+    width:400px;
+}
+
+h1{
+    font-family:"moret", serif;
+    font-weight:400;
+    font-size: 36px;
+    line-height: 40px;
+    color: #30302F;
+    text-align: center;
+    }
+
+h2{
+    font-family: "moret", serif;
+    font-style: normal;
+    font-weight:400;
+    font-size: 30px;
+    line-height: 40px;
+    color: #30302F;
+    text-align: center;
+    }
+
+p{
+    font-family: 'Sofia Sans', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.button{
+    align-items: center;
+    text-align: center; 
+    width:400px;
+    background-color: #324E70;
+    border:none;
+    border-radius: 5px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    font-size: 16px;
+    margin-top:36px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+}
+

@@ -5,12 +5,34 @@ import ScrollToBottom from 'react-scroll-to-bottom';
 import botAvatar from './assets/botProfile.png';
 import userAvatar from './assets/profile.png';
 import kinHubLogo from './assets/kinhubLogo.png';
+import "./botchat.css";
+import NavBar from './NavBar';
 
 function BotChat() {
   const [messages, setMessages] = useState([]);
   const [userInput, setUserInput] = useState('');
   const [conversationId, setConversationId] = useState('');
   const [isBotTyping, setIsBotTyping] = useState(false); // New state variable
+ 
+   //email for username 
+  const [email, setEmail] = useState('');
+
+   //Extract the email abd set it as the state variable
+   useEffect(() => {
+   //replace with const url = window.location.href;
+     const url = "http://localhost:3000?email=george@kinhub.com"
+     const emailRegex = /[\w.+-]+@[\w-]+\.[\w.-]+/;
+     const extractedEmail = url.match(emailRegex)[0];
+     
+     if (extractedEmail && extractedEmail.length > 0) {
+       setEmail(extractedEmail);
+     } else {
+       setEmail('GenericUser'); // Reset the email if no valid email is found
+       console.error('No valid email found in the URL.');
+     }
+ 
+   },[]);
+    
 
   useEffect(() => {
     startConversation();
@@ -23,7 +45,7 @@ function BotChat() {
         null,
         {
           headers: {
-            Authorization: 'Bearer bwYLT-cwA_M.BhtJakrYsUzI3nrfwSslYOjn8WhbQXEO3ppdhWJQ8iw',
+            Authorization: 'Bearer Yh2mc65jTnw.R3N3X8MOVviN-nTvCZkx7N6zJxjXvjp2zlF9rK5ZBqA',
             'Content-Type': 'application/json',
           },
         }
@@ -47,14 +69,14 @@ function BotChat() {
         text: message,
         type: 'message',
         from: {
-          id: 'annelast202@gmail.com',
+          id: email,
           role: 'user',
         },
       };
 
       await axios.post(url, payload, {
         headers: {
-          Authorization: 'Bearer bwYLT-cwA_M.BhtJakrYsUzI3nrfwSslYOjn8WhbQXEO3ppdhWJQ8iw',
+          Authorization: 'Bearer Yh2mc65jTnw.R3N3X8MOVviN-nTvCZkx7N6zJxjXvjp2zlF9rK5ZBqA',
           'Content-Type': 'application/json',
         },
       });
@@ -93,7 +115,7 @@ function BotChat() {
           {
             params: { watermark },
             headers: {
-              Authorization: 'Bearer bwYLT-cwA_M.BhtJakrYsUzI3nrfwSslYOjn8WhbQXEO3ppdhWJQ8iw',
+              Authorization: 'Bearer Yh2mc65jTnw.R3N3X8MOVviN-nTvCZkx7N6zJxjXvjp2zlF9rK5ZBqA',
               'Content-Type': 'application/json',
             },
           }
@@ -145,7 +167,7 @@ function BotChat() {
         }
 
         // Delay before checking for new messages
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, 100));
       }
     } catch (error) {
       console.error('Error receiving messages from bot:', error);
@@ -162,7 +184,8 @@ function BotChat() {
 
   return (
     <div>
-      
+    <NavBar/>
+    <div className='App'>
       <div className="chat-window">
         <div className="chat-header">
           <img src={kinHubLogo} className='chatLogo'/>
@@ -182,7 +205,7 @@ function BotChat() {
                       </div>
                     </div>
                     <div className="message-meta-user">
-                      <p id="name">User</p>
+                      <p id="name">{email}</p>
                       <p id="time">{message.time}</p>
                     </div>
                   </div>
@@ -229,7 +252,9 @@ function BotChat() {
         </div>
       </div>
     </div>
+  </div>
   );
 }
 
 export default BotChat;
+
