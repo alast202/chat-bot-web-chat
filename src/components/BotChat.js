@@ -45,7 +45,7 @@ function BotChat() {
         null,
         {
           headers: {
-            Authorization: 'Bearer Yh2mc65jTnw.R3N3X8MOVviN-nTvCZkx7N6zJxjXvjp2zlF9rK5ZBqA',
+            Authorization: 'Bearer SECRET_KEY',
             'Content-Type': 'application/json',
           },
         }
